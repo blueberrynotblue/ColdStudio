@@ -1,6 +1,8 @@
-import BlogRegistryActor.GetBlog
+package studio.cold.actor
+
 import akka.actor.{Actor, ActorLogging}
-import studio.cold.entity.Blog
+import studio.cold.actor.BlogRegistryActor.GetBlog
+import studio.cold.dao.Blog
 
 object BlogRegistryActor {
 
