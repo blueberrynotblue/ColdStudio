@@ -1,8 +1,8 @@
 package studio.cold.actor
 
 import akka.actor.{Actor, ActorLogging}
-import studio.cold.actor.BlogRegistryActor.GetBlog
-import studio.cold.dao.Blog
+import studio.cold.actor.BlogRegistryActor._
+import studio.cold.dao.{Blog, BlogDao}
 
 object BlogRegistryActor {
 
@@ -20,6 +20,13 @@ object BlogRegistryActor {
 
 class BlogRegistryActor extends Actor with ActorLogging {
   def receive: Receive = {
-    case GetBlog(title) => log.info(title)
+    case GetBlog(title) => sender() ! BlogDao.get(title)
+    case GetAllBlog => sender() ! BlogDao.findAll
+    case CreateBlog(blog)=>
+      BlogDao.create(blog)
+      sender() ! ActionPerformed("创建成功")
+    case DeleteBlog(title)=>
+      BlogDao.delete(title)
+      sender() ! ActionPerformed("删除成功")
   }
 }

@@ -4,7 +4,7 @@ case class Blog(title: String, content: String, createdAt: Long)
 
 case class BlogWithoutContent(title: String, createdAt: Long)
 
-object Blog {
+object BlogDao {
 
   import postgresCtx._
 
