@@ -1,6 +1,6 @@
 package studio.cold.actor
 
-import akka.actor.{Actor, ActorLogging}
+import akka.actor.{Actor, ActorLogging, Props}
 import studio.cold.actor.BlogRegistryActor._
 import studio.cold.dao.{Blog, BlogDao}
 
@@ -15,6 +15,8 @@ object BlogRegistryActor {
   final case class CreateBlog(blog: Blog)
 
   final case class DeleteBlog(title: String)
+
+  def props: Props =Props[BlogRegistryActor]
 
 }
 
